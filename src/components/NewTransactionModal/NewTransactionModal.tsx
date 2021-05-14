@@ -23,14 +23,7 @@ const NewTransactionModal = ({isOpen, onRequestClose }: NewTransactionModalProps
   function handleCreateNewTransaction(event: FormEvent) {
     event.preventDefault();
 
-    const data = {
-      title,
-      value,
-      category,
-      type,
-    };
-
-    api.post('/transactions', data)
+ 
   }
 
   return (

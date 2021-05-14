@@ -10,6 +10,13 @@ interface Transaction {
   createdAt: string;
 }
 
+interface TransactionInput {
+  title: string;
+  amount: number;
+  type: string;
+  category: string;
+}
+
 interface TransactionsProviderProps {
   children: ReactNode;
 }
@@ -23,6 +30,10 @@ export function TransactionsProvider({children}: TransactionsProviderProps ) {
     api.get('/transactions')
       .then((res) => setTransactions(res.data.transactions));
   }, []);
+
+  function createTransaction(transaction: TransactionInput) {
+    api.post('/transactions', transaction)
+  }
 
   return (
     <TransactionsContext.Provider value={transactions}>
