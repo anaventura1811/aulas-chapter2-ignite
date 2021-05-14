@@ -4,12 +4,14 @@ import { GlobalStyle } from "./styles/global";
 import { Header } from './components/Header';
 import { Dashboard } from "./components/Dashboard";
 import NewTransactionModal from './components/NewTransactionModal/NewTransactionModal';
+import { TransactionsProvider } from './TransactionsContext';
 
 Modal.setAppElement('#root');
 
 export function App() {
 
   const [isNewTransactionModalOpen, setIsNewTransactionModalOpen] = useState(false);
+ 
 
   function handleOpenNewTransactionModal() {
     setIsNewTransactionModalOpen(true);
@@ -23,7 +25,8 @@ export function App() {
   // como props a partir de um componente pai
 
   return (
-    <>
+    <TransactionsProvider>
+
       <Header onOpenNewTransactionModal={handleOpenNewTransactionModal}/>
       <Dashboard />
       <NewTransactionModal
@@ -32,7 +35,7 @@ export function App() {
       />
 
       <GlobalStyle />
-    </>
+    </TransactionsProvider>
   );
 }
 
